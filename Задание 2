@@ -1,0 +1,23 @@
+import pandas as pd
+#чтение файла
+file_text = open('intro_dataset_2.txt')
+str_file = file_text.read()
+
+#преобразование в список
+list_file = str_file.split(',')
+
+#преобразование в датафрейм
+df=pd.DataFrame(list_file) 
+
+#построение свободной таблицы
+table = df.groupby(0)[[0]].count()
+
+#нейминг таблицы
+header = ['Количество покупок позиции'] 
+
+table.set_axis(header, axis = 'columns', inplace = True) 
+
+#итог
+print(table)
+
+#скрин получившейся таблицы - https://prnt.sc/1q70moh
