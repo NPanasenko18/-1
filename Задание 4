@@ -1,0 +1,21 @@
+list_of_dicts = [{'author': 'kommersant', 'link': 'link 1', 'OTS': 50000, 'type': 'media'}, 
+                 {'author': 'vedomosti', 'link': 'link 1', 'OTS': 100000, 'type': 'media'},
+                 {'author': 'kommersant', 'link': 'link 1', 'OTS': 20000, 'type': 'VK'},
+                 {'author': 'kommersant', 'link': 'link 1', 'OTS': 5000, 'type': 'FB'}]
+
+ots_total = []
+
+for link in list_of_dicts:
+    
+    if link.get('type') == 'media':
+        ots_media = link.get('OTS')*0.8*0.01
+        ots_total.append(ots_media)
+    elif link.get('type') == 'VK':
+        ots_vk = link.get('OTS')*0.8*0.1
+        ots_total.append(ots_vk)
+    elif link.get('type') == 'FB':
+        ots_fb = ots_vk = link.get('OTS')*0.8*0.3
+        ots_total.append(ots_fb)
+        
+ots_sum = sum(ots_total)   
+print('TC всех публикаций {}'.format(ots_sum))
