@@ -1,0 +1,32 @@
+f=open('vk_post.txt')
+text = f.read()
+list_of_items = text.split('<div class="post_header_info">')[1:]
+
+list_id = []
+post_id = []
+text_posts =[]
+likes_count =[]
+
+for i in list_of_items:
+    #new_list.append(i.split('data-')[1])
+    list_id.append(i.split('data-from-id="-')[1])
+#    post_id.append(j.split('data-post-id="-')[1])
+for i in list_of_items:
+    post_id.append(i.split('data-post-id="-')[1])
+
+for i in list_of_items:
+    text_posts.append(i.split('wall_post_text">')[1])
+    
+for i in list_of_items:
+    likes_count.append(i.split('like-button-count">')[1])   
+
+id_author = list_id[0].split('"')
+link_post = post_id[0].split('"')
+post_text = text_posts[0].split('<br><br><a href="')
+likes = likes_count[0].split('<')
+
+
+print('id автора {}'.format((id_author[0])))
+print('ссылка на https://vk.com/wall-{}'.format((link_post[0])))
+print('Текст поста выглядит некрасиво, но как есть( - "{}"'.format((post_text[0])))
+print('Количество лайков этого чудесного поста - {}'.format((likes[0])))
