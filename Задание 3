@@ -1,0 +1,13 @@
+list_of_dicts = [{'post': 'post 1', 'author': 'author 1', 'followers': 4000, 'likes': 20, 'comments':10}, 
+{'post': 'post 2', 'author': 'author 2', 'followers': 5000, 'likes': 50, 'comments':60},
+{'post': 'post 3', 'author': 'author 3', 'followers': 6000, 'likes': 70, 'comments':5}]
+
+Eng_Rate = []
+for i in list_of_dicts:
+    followers = i.get('followers')
+    socail_actions = i.get('likes')+i.get('comments')
+    ER = socail_actions/followers
+    Eng_Rate.append(ER)
+
+Av_ER = sum(Eng_Rate)/len(Eng_Rate)
+print('Средний ER трех постов равен {:.1%}'.format(Av_ER))
