@@ -1,0 +1,49 @@
+'''
+#задание 1
+
+#0. откройте файл dataset_lesson2 (pd.read_excel())
+#1. проеобразуйте полученный датафрейм в список словарей - https://stackoverflow.com/questions/29815129/pandas-dataframe-to-list-of-dictionaries
+#2. напишите цикл, при котором мы выделяем в отдельный список людей до тех пор, пока у нас их суммарное количество подписчиков не составит 1000000 человек
+#3. выведите, какое среднее количество подписчиков и ER вышло по данной выборке?
+'''
+import pandas as pd
+
+df = pd.read_excel('dataset_lesson2.xlsx')
+
+list_of_dicts = []
+for index, row in df[['id', 'Nickname', 'Followers', 'ER']].iterrows():
+    list_of_dicts.append({
+            'id': row['id'],
+            'Nickname': row['Nickname'],
+            'Followers': row['Followers'],
+            'ER': row['ER'],
+            })
+
+list_of_dicts_2=[]
+
+j = 0
+for i in list_of_dicts:
+    j = j + i['Followers']
+    if j <=1000000:
+        list_of_dicts_2.append(i)
+
+av_followers=0  
+av_er = 0   
+for stat in list_of_dicts_2:
+    av_followers = av_followers+stat['Followers']/len(list_of_dicts_2)
+    av_er = av_er+stat['ER']/len(list_of_dicts_2)
+
+print('Средний ER по выборке {:.1%}'.format(av_er))
+print('Среднее количество подписчиков по выборке {:.0f}'.format(av_followers))   
+
+    
+        
+        
+        
+        
+    
+
+        
+        
+    
+    
