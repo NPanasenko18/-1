@@ -1,0 +1,14 @@
+
+
+f = open("followers.txt")
+soup = f.read()
+
+list_of_items = soup.split('<div class="_2let"><div><div>')[1:]
+nickname = []
+for i in list_of_items:
+    nickname.append(i.split('>')[1].split('<')[0])
+
+list_user_links = []
+for i in nickname:   
+    list_user_links.append('https://www.instagram.com/'+str(i))
+ 
