@@ -1,0 +1,34 @@
+"""
+#задание 2
+
+#немного усложним предыдущее задание - давайте будем добавлять только тех людей, ER которых был не меньше 5%
+
+"""
+
+import pandas as pd
+
+df = pd.read_excel('dataset_lesson2.xlsx')
+
+list_of_dicts = []
+for index, row in df[['id', 'Nickname', 'Followers', 'ER']].iterrows():
+    list_of_dicts.append({
+            'id': row['id'],
+            'Nickname': row['Nickname'],
+            'Followers': row['Followers'],
+            'ER': row['ER'],
+            })
+
+list_of_dicts_2=[]
+
+for i in list_of_dicts:
+    if i['Followers'] < 1000000 and i['ER'] >= 0.05:
+        #if i['ER'] >=0.05:
+            list_of_dicts_2.append(i)
+
+
+av_er = 0   
+for stat in list_of_dicts_2:
+    
+    av_er = av_er+stat['ER']/len(list_of_dicts_2)
+
+print('Средний ER по выборке {:.1%}'.format(av_er))
